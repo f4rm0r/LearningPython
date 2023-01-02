@@ -31,7 +31,8 @@ message.pack()
 try:
     from ctypes import windll
 
-    #windll.shcore.SetProcessDpiAwareness(1)
+    windll.shcore.SetProcessDpiAwareness(1)
+
 finally:
 # Keep the window open and visible.
     root.mainloop()
