@@ -22,6 +22,9 @@ def guess(x):
     except ValueError:
         print("must guess a number! Exiting.")
         exit
+    
+    except NameError:
+        quit
 
     
 
