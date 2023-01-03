@@ -12,24 +12,16 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
-
+  
 jobs:
-  build:
+  build: 
     runs-on: windows-latest
-
-    steps:
-      # Check-out repository
-      - uses: Nuitka/Nuitka-Action@v0.4
-
-      # Build python script into a stand-alone exe
-      - uses: Nuitka/Nuitka-Action@v0.4
-        with:
-          script-name: small_projects/Calculator/calc.py
-      
-      # Uploads artifact
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: exe
-          path: build/calculator.exe
+  steps:
+    - uses: Nuitka/Nuitka-Action@v0.4
+      with: 
+        script-name: small_projects/Calculator/calc.py
+    
+    - name: upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        path: build/calculator.exe
