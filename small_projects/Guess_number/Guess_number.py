@@ -1,4 +1,5 @@
 import random
+import sys
 
 def guess(x):
     random_number = random.randint(1, x)
@@ -21,10 +22,7 @@ def guess(x):
         
     except ValueError:
         print("must guess a number! Exiting.")
-        exit
-    
-    except NameError:
-        quit
+        sys.exit
 
     
 
@@ -36,7 +34,7 @@ def again():
         start()
     
     else:
-        exit
+        sys.exit
 
 
 
@@ -57,6 +55,6 @@ def start():
         guess(x) 
     
     else:
-        exit
+        sys.exit
 
 start()
