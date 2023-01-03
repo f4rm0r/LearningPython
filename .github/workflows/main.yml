@@ -1,0 +1,7 @@
+- name: Build EXE from Python Script
+  # You may pin to the exact commit or the version.
+  # uses: Nuitka/Nuitka-Action@d345ca7ac4d8cf05fae75a6dc53ec04fc5f392f8
+  uses: Nuitka/Nuitka-Action@v0.4
+  with:
+    # name or path to python script that is to be built
+    script-name: small_projects/Calculator/calc.py
