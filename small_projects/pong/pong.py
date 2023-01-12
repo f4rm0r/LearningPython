@@ -1,5 +1,6 @@
 import turtle
 import random
+import time
 
 win = turtle.Screen()
 win.title("pong by ArchTV")
@@ -34,8 +35,11 @@ ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)
-ball.dx = 0.34
-ball.dy = 0.34
+ball.dx = 10
+ball.dy = 10
+
+# Initialize time 
+last_time = time.time()
 
 # points
 left_player = 0
@@ -90,7 +94,7 @@ def start_dir():
 
     global direction_set
     if direction_set == False:
-        random_list = [0.04, -0.04]
+        random_list = [1, -1]
 
         ball.dx = random.choice(random_list)
         ball.dy = random.choice(random_list)
@@ -103,8 +107,15 @@ while True:
     win.update()
 
     # Move the ball
-    ball.setx(ball.xcor() + ball.dx)
-    ball.sety(ball.ycor() + ball.dy)
+
+    current_time = time.time()
+    dt = current_time - last_time
+    last_time = current_time
+
+    speed_scale = dt * 100
+    
+    ball.setx(ball.xcor() + ball.dx * speed_scale)
+    ball.sety(ball.ycor() + ball.dy * speed_scale)
 
     # Border checking
 
