@@ -35,23 +35,28 @@ ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)
-ball.dx = 10
-ball.dy = 10
+ball.dx = 1
+ball.dy = 1
 
 # Initialize time 
 last_time = time.time()
 
 # points
+global left_player
+global right_player
 left_player = 0
-Right_player = 0
+right_player = 0
 
-sketch = turtle.Turtle()
-sketch.speed(0)
-sketch.color("white")
-sketch.penup()
-sketch.hideturtle
-sketch.goto(0, 260)
-sketch.write("Left_player: 0   Right_player: 0", align="center", font=("Courier", 24, "normal"))
+def points():
+    sketch = turtle.Turtle()
+    sketch.speed(0)
+    sketch.color("white")
+    sketch.penup()
+    sketch.hideturtle
+    sketch.goto(0, 260)
+    sketch.clear()
+    sketch.write(f"Left_player: {left_player}   Right_player: {right_player}", align="center", font=("Courier", 24, "normal"))
+    start_dir()
 
 # Functions
 
@@ -98,9 +103,10 @@ def start_dir():
 
         ball.dx = random.choice(random_list)
         ball.dy = random.choice(random_list)
+    # Setting the direction to True so it will not randomize direction in a loop.    
     direction_set = True
 
-start_dir()
+points()
 
 while True:
 
@@ -129,7 +135,9 @@ while True:
 
     if ball.xcor() > 390:
         ball.goto(0, 0)
-        ball.dx *= -1
+        left_player += 1
+        direction_set = False
+        points()
     
     if ball.xcor() < -390:
         ball.goto(0, 0)
@@ -145,7 +153,7 @@ while True:
     if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle_0.ycor() + 50 and ball.ycor() > paddle_0.ycor() -50):
         ball.setx(-340)
         ball.dx *= -1
-        ball.dx *= -1
+        ball.dy *= -1
 
     if paddle_0.ycor() > 250:
         paddle_0.sety(250)
