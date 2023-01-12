@@ -34,8 +34,20 @@ ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)
-ball.dx = 0.04
-ball.dy = 0.04
+ball.dx = 0.34
+ball.dy = 0.34
+
+# points
+left_player = 0
+Right_player = 0
+
+sketch = turtle.Turtle()
+sketch.speed(0)
+sketch.color("white")
+sketch.penup()
+sketch.hideturtle
+sketch.goto(0, 260)
+sketch.write("Left_player: 0   Right_player: 0", align="center", font=("Courier", 24, "normal"))
 
 # Functions
 
@@ -72,20 +84,22 @@ win.onkeypress(paddle_1_down, "Down")
 # Main game loop
 
 # Random starting direction of ball
+direction_set = False
+
 def start_dir():
 
-    random_list = ["left", "right"]
+    global direction_set
+    if direction_set == False:
+        random_list = [0.04, -0.04]
 
-    left = ball.dx = 0.04
-    right = ball.dx = -0.04
-    start_dir = random.choice(random_list)
+        ball.dx = random.choice(random_list)
+        ball.dy = random.choice(random_list)
+    direction_set = True
 
-    if start_dir == left:
-        left
-    if start_dir == right:
-        right
+start_dir()
 
 while True:
+
     win.update()
 
     # Move the ball
@@ -115,9 +129,11 @@ while True:
     if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_1.ycor() + 50 and ball.ycor() > paddle_1.ycor() -50):
         ball.setx(340)
         ball.dx *= -1
+        ball.dy *= -1
     
     if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle_0.ycor() + 50 and ball.ycor() > paddle_0.ycor() -50):
         ball.setx(-340)
+        ball.dx *= -1
         ball.dx *= -1
 
     if paddle_0.ycor() > 250:
